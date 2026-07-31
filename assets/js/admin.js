@@ -191,26 +191,84 @@
     }
 
     const pricePaid = parseFloat(pricePaidInput.value) || null;
+    const course = coursesCache.find(function (c) { return c.id === courseId; });
 
     enrollBtn.disabled = true;
-    const { error } = await supabaseClient
+    const { data: newEnrollment, error } = await supabaseClient
       .from('enrollments')
       .insert({
         user_id: selectedUser.id,
         course_id: courseId,
         price_paid: pricePaid
-      });
-    enrollBtn.disabled = false;
+      })
+      .select()
+      .single();
 
     if (error) {
+      enrollBtn.disabled = false;
       showEnrollAlert('Fehler: ' + error.message, 'danger');
       return;
     }
 
+    // Rechnungs-PDF automatisch erzeugen und im privaten Bucket ablegen
+    try {
+      const invoicePath = await generateInvoicePdf(newEnrollment, course, pricePaid);
+      await supabaseClient
+        .from('enrollments')
+        .update({ invoice_pdf_path: invoicePath })
+        .eq('id', newEnrollment.id);
+    } catch (invoiceErr) {
+      console.error('Rechnung konnte nicht erstellt werden:', invoiceErr);
+    }
+
+    enrollBtn.disabled = false;
     showEnrollAlert('Einschreibung erfolgreich angelegt.', 'success');
     pricePaidInput.value = '';
     loadUserEnrollmentsAndCertificates();
   });
+
+  // ---- Rechnungs-PDF erzeugen (privates Storage-Bucket "invoices") ----
+  async function generateInvoicePdf(enrollment, course, pricePaid) {
+    const invoiceNumber = 'RE-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000);
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+    doc.setFontSize(18);
+    doc.text('Rechnung / Zahlungsbeleg', 20, 25);
+
+    doc.setFontSize(11);
+    doc.setTextColor(80, 80, 80);
+    doc.text('FortbildungMed OÜ, Tallinn, Estland', 20, 35);
+
+    doc.setTextColor(20, 20, 20);
+    doc.text('Rechnungsnummer: ' + invoiceNumber, 20, 50);
+    doc.text('Datum: ' + new Date().toLocaleDateString('de-DE'), 20, 57);
+    doc.text('Kunde: ' + (selectedUser.full_name || ''), 20, 64);
+    doc.text('E-Mail: ' + selectedUser.email, 20, 71);
+
+    doc.line(20, 80, 190, 80);
+
+    doc.text('Beschreibung', 20, 90);
+    doc.text('Betrag', 170, 90);
+    doc.text(course.title, 20, 98);
+    doc.text((pricePaid != null ? pricePaid.toFixed(2) : '0.00') + ' €', 170, 98);
+
+    doc.line(20, 105, 190, 105);
+    doc.setFontSize(13);
+    doc.text('Gesamt: ' + (pricePaid != null ? pricePaid.toFixed(2) : '0.00') + ' €', 140, 115);
+
+    const pdfBlob = doc.output('blob');
+    const filePath = selectedUser.id + '/' + enrollment.id + '.pdf';
+
+    const { error: uploadError } = await supabaseClient.storage
+      .from('invoices')
+      .upload(filePath, pdfBlob, { contentType: 'application/pdf', upsert: true });
+
+    if (uploadError) throw uploadError;
+
+    return filePath;
+  }
 
   function showEnrollAlert(message, type) {
     enrollAlert.textContent = message;

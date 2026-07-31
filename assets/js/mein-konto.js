@@ -101,7 +101,7 @@
   async function loadCourses() {
     const { data, error } = await supabaseClient
       .from('enrollments')
-      .select('purchased_at, price_paid, courses(id, title, hours, slug)')
+      .select('id, purchased_at, price_paid, invoice_pdf_path, courses(id, title, hours, slug)')
       .eq('user_id', user.id)
       .order('purchased_at', { ascending: false });
 
@@ -192,7 +192,7 @@
     });
   }
 
-  function renderInvoices(enrollments) {
+  async function renderInvoices(enrollments) {
     if (!invoicesBody) return;
     invoicesBody.innerHTML = '';
 
@@ -202,16 +202,28 @@
     }
     if (invoicesEmpty) invoicesEmpty.classList.add('d-none');
 
-    enrollments.forEach(function (e) {
+    for (const e of enrollments) {
       const course = e.courses;
+      let actionHtml = '<span class="badge bg-light text-600 border">Rechnung folgt</span>';
+
+      if (e.invoice_pdf_path) {
+        const { data: signedData } = await supabaseClient.storage
+          .from('invoices')
+          .createSignedUrl(e.invoice_pdf_path, 3600);
+
+        if (signedData && signedData.signedUrl) {
+          actionHtml = '<a href="' + signedData.signedUrl + '" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill">PDF</a>';
+        }
+      }
+
       const row = document.createElement('tr');
       row.innerHTML =
         '<td class="small">' + formatDate(e.purchased_at) + '</td>' +
         '<td>' + (course ? course.title : '') + '</td>' +
         '<td class="fw-bold">' + (e.price_paid != null ? e.price_paid.toFixed(2) + ' €' : '–') + '</td>' +
-        '<td class="text-end"><span class="badge bg-light text-600 border">Rechnung folgt</span></td>';
+        '<td class="text-end">' + actionHtml + '</td>';
       invoicesBody.appendChild(row);
-    });
+    }
   }
 
   // ---- Profil speichern ----
@@ -360,7 +372,7 @@
   await loadProfile();
   const enrollments = await loadCourses();
   renderCourses(enrollments);
-  renderInvoices(enrollments);
+  await renderInvoices(enrollments);
   const certs = await loadCertificates();
   renderCertificates(certs);
 })();

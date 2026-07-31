@@ -213,10 +213,14 @@
     // Rechnungs-PDF automatisch erzeugen und im privaten Bucket ablegen
     try {
       const invoicePath = await generateInvoicePdf(newEnrollment, course, pricePaid);
-      await supabaseClient
+      const { error: updateError } = await supabaseClient
         .from('enrollments')
         .update({ invoice_pdf_path: invoicePath })
         .eq('id', newEnrollment.id);
+
+      if (updateError) {
+        console.error('invoice_pdf_path konnte nicht gespeichert werden:', updateError);
+      }
     } catch (invoiceErr) {
       console.error('Rechnung konnte nicht erstellt werden:', invoiceErr);
     }

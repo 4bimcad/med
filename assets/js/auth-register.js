@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .insert({
           id: user.id,
           full_name: fullName,
-          berufsgruppe: beruf
+          berufsgruppe: beruf,
+          email: email
         });
 
       if (profileError) {

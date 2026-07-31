@@ -39,16 +39,6 @@
     .account-nav .nav-link i {
       width: 1.4rem;
     }
-    .course-progress {
-      height: 6px;
-      border-radius: 3px;
-      background: #e9ecef;
-    }
-    .course-progress-bar {
-      height: 100%;
-      border-radius: 3px;
-      background: #9C69E2;
-    }
     .course-card-account {
       border: 1px solid #e9ecef;
       border-radius: 0.75rem;
@@ -57,20 +47,6 @@
     .course-card-account:hover {
       border-color: #9C69E2;
       box-shadow: 0 6px 18px rgba(156, 105, 226, 0.12);
-    }
-    .status-badge {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 0.25rem 0.6rem;
-      border-radius: 2rem;
-    }
-    .status-open {
-      background: #f3e8ff;
-      color: #7c3aed;
-    }
-    .status-done {
-      background: #d1fae5;
-      color: #065f46;
     }
     .avatar-circle {
       width: 64px;
@@ -112,9 +88,13 @@
             <li class="nav-item"><a class="nav-link fw-medium" href="zertifikat.html">Zertifikat</a></li>
             <li class="nav-item"><a class="nav-link fw-medium" href="kontakt.html">Kontakt</a></li>
           </ul>
-          <form class="d-flex py-3 py-lg-0">
-            <a class="btn btn-light rounded-pill shadow fw-bold" href="mein-konto.html" role="button">
-              Mein Konto
+          <form class="d-flex py-3 py-lg-0" id="navbar-auth-form">
+            <a class="btn btn-light rounded-pill shadow fw-bold" href="registrieren.html" role="button" id="navbar-auth-btn">Registrieren / Anmelden
+              <svg class="bi bi-box-arrow-in-right" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#9C69E2"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"></path>
+                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"></path>
+              </svg>
             </a>
           </form>
         </div>
@@ -131,10 +111,10 @@
           <div class="col-lg-3">
             <div class="account-sidebar card p-3 shadow-sm">
               <div class="d-flex align-items-center gap-3 mb-4">
-                <div class="avatar-circle">AK</div>
+                <div class="avatar-circle" id="account-avatar">…</div>
                 <div>
-                  <div class="fw-bold">Anna Kaufmann</div>
-                  <div class="small text-600">anna.kaufmann@email.de</div>
+                  <div class="fw-bold" id="account-name">Wird geladen …</div>
+                  <div class="small text-600" id="account-email"></div>
                 </div>
               </div>
 
@@ -152,7 +132,7 @@
                   <i class="bi bi-gear me-2"></i>Einstellungen
                 </a>
                 <hr class="my-2">
-                <a class="nav-link text-danger" href="index.html">
+                <a class="nav-link text-danger" href="index.html" id="sidebar-logout-link">
                   <i class="bi bi-box-arrow-right me-2"></i>Abmelden
                 </a>
               </nav>
@@ -175,66 +155,13 @@
                   </a>
                 </div>
 
-                <!-- Course 1 -->
-                <div class="course-card-account p-3 p-md-4 mb-3">
-                  <div class="row align-items-center g-3">
-                    <div class="col-auto">
-                      <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;background:#f3e8ff;">
-                        <i class="bi bi-brain" style="font-size:1.5rem;color:#9C69E2;"></i>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-                        <h5 class="fw-bold mb-0 fs-6">Umgang mit Demenz</h5>
-                        <span class="status-badge status-open">In Bearbeitung</span>
-                      </div>
-                      <div class="small text-600 mb-2">5 Module · 10 UE · Gekauft am 12.07.2026</div>
-                      <div class="course-progress mb-1" style="max-width:220px;">
-                        <div class="course-progress-bar" style="width:40%;"></div>
-                      </div>
-                      <div class="small text-600">2 von 5 Modulen abgeschlossen</div>
-                    </div>
-                    <div class="col-auto">
-                      <a href="#" class="btn btn-sm btn-primary rounded-pill px-3">Weiterlernen</a>
-                    </div>
-                  </div>
-                </div>
+                <div id="courses-container"></div>
 
-                <!-- Course 2 -->
-                <div class="course-card-account p-3 p-md-4 mb-3">
-                  <div class="row align-items-center g-3">
-                    <div class="col-auto">
-                      <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;background:#f3e8ff;">
-                        <i class="bi bi-shield-check" style="font-size:1.5rem;color:#9C69E2;"></i>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
-                        <h5 class="fw-bold mb-0 fs-6">Hygiene in der Pflege</h5>
-                        <span class="status-badge status-done">Abgeschlossen</span>
-                      </div>
-                      <div class="small text-600 mb-2">4 Module · 6 UE · Gekauft am 03.06.2026</div>
-                      <div class="course-progress mb-1" style="max-width:220px;">
-                        <div class="course-progress-bar" style="width:100%;"></div>
-                      </div>
-                      <div class="small text-600">Kurs abgeschlossen</div>
-                    </div>
-                    <div class="col-auto d-flex gap-2">
-                      <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Ansehen</a>
-                      <a href="#" class="btn btn-sm btn-success rounded-pill px-3">
-                        <i class="bi bi-download me-1"></i>Zertifikat
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Empty state (если нет курсов) — раскомментируй при необходимости
-                <div class="text-center py-5">
+                <div class="text-center py-5 d-none" id="courses-empty">
                   <i class="bi bi-journal-x display-4 text-300"></i>
                   <p class="mt-3 text-600">Sie haben noch keine Kurse gebucht.</p>
                   <a href="fachbereiche.html" class="btn btn-primary rounded-pill">Kurse entdecken</a>
                 </div>
-                -->
               </div>
 
               <!-- Zertifikate -->
@@ -242,21 +169,11 @@
                 <h2 class="fw-bold mb-1">Meine Zertifikate</h2>
                 <p class="text-600 mb-4 small">Alle Ihre Teilnahmebescheinigungen zum Download</p>
 
-                <div class="course-card-account p-3 p-md-4 mb-3">
-                  <div class="row align-items-center g-3">
-                    <div class="col-auto">
-                      <i class="bi bi-award" style="font-size:2rem;color:#9C69E2;"></i>
-                    </div>
-                    <div class="col">
-                      <h5 class="fw-bold mb-1 fs-6">Hygiene in der Pflege</h5>
-                      <div class="small text-600">Ausgestellt am 18.06.2026 · 6 UE · QR-Code zur Verifizierung</div>
-                    </div>
-                    <div class="col-auto">
-                      <a href="#" class="btn btn-sm btn-primary rounded-pill px-3">
-                        <i class="bi bi-download me-1"></i>PDF herunterladen
-                      </a>
-                    </div>
-                  </div>
+                <div id="certificates-container"></div>
+
+                <div class="text-center py-5 d-none" id="certificates-empty">
+                  <i class="bi bi-award display-4 text-300"></i>
+                  <p class="mt-3 text-600">Sie haben noch keine Zertifikate.</p>
                 </div>
 
                 <p class="small text-600 mt-3">
@@ -280,73 +197,98 @@
                         <th></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td class="small">12.07.2026</td>
-                        <td>Umgang mit Demenz</td>
-                        <td class="fw-bold">69 €</td>
-                        <td class="text-end">
-                          <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">PDF</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="small">03.06.2026</td>
-                        <td>Hygiene in der Pflege</td>
-                        <td class="fw-bold">49 €</td>
-                        <td class="text-end">
-                          <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">PDF</a>
-                        </td>
-                      </tr>
-                    </tbody>
+                    <tbody id="invoices-body"></tbody>
                   </table>
+                  <div class="text-center py-4 d-none" id="invoices-empty">
+                    <p class="text-600 mb-0">Noch keine Rechnungen vorhanden.</p>
+                  </div>
                 </div>
               </div>
 
               <!-- Einstellungen -->
               <div class="tab-pane fade" id="einstellungen">
                 <h2 class="fw-bold mb-1">Einstellungen</h2>
-                <p class="text-600 mb-4 small">Persönliche Daten und Passwort</p>
+                <p class="text-600 mb-4 small">Persönliche Daten, beruflicher Nachweis und Passwort</p>
 
+                <!-- Persönliche Daten -->
                 <div class="card p-4 mb-4">
                   <h5 class="fw-bold mb-3">Persönliche Daten</h5>
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label class="form-label small">Vorname</label>
-                      <input type="text" class="form-control" value="Anna">
+                  <div id="settings-alert" class="alert d-none" role="alert"></div>
+                  <form id="profile-form">
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label small">Vor- und Nachname</label>
+                        <input type="text" class="form-control" id="settings-full-name">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label small">Berufsgruppe</label>
+                        <select class="form-select" id="settings-beruf">
+                          <option value="">Bitte wählen …</option>
+                          <option>Pflege</option>
+                          <option>Rettungsdienst</option>
+                          <option>Medizinische Fachangestellte (MFA)</option>
+                          <option>Apotheke</option>
+                          <option>Labor</option>
+                        </select>
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label small">E-Mail</label>
+                        <input type="email" class="form-control" id="settings-email" disabled>
+                        <div class="form-text">Die E-Mail-Adresse kann derzeit nicht geändert werden.</div>
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label small">LinkedIn-Profil</label>
+                        <input type="url" class="form-control" id="settings-linkedin" placeholder="https://www.linkedin.com/in/ihr-profil">
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-primary rounded-pill px-4">Speichern</button>
+                      </div>
                     </div>
-                    <div class="col-md-6">
-                      <label class="form-label small">Nachname</label>
-                      <input type="text" class="form-control" value="Kaufmann">
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label small">E-Mail</label>
-                      <input type="email" class="form-control" value="anna.kaufmann@email.de">
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary rounded-pill px-4">Speichern</button>
-                    </div>
-                  </div>
+                  </form>
                 </div>
 
+                <!-- CV Upload -->
+                <div class="card p-4 mb-4">
+                  <h5 class="fw-bold mb-3">Lebenslauf (CV)</h5>
+                  <p class="small text-600">Ihr CV wird zusammen mit Ihrem Zertifikat auf der Verifizierungsseite angezeigt.</p>
+                  <div id="cv-alert" class="alert d-none" role="alert"></div>
+                  <form id="cv-form" class="row g-3 align-items-end">
+                    <div class="col-md-8">
+                      <label class="form-label small">PDF-Datei</label>
+                      <input type="file" class="form-control" id="cv-file" accept="application/pdf">
+                    </div>
+                    <div class="col-md-4">
+                      <button type="submit" class="btn btn-outline-primary rounded-pill px-4 w-100">CV hochladen</button>
+                    </div>
+                  </form>
+                  <a href="#" target="_blank" class="small mt-2 d-inline-block d-none" id="cv-current-link">
+                    <i class="bi bi-file-earmark-pdf me-1"></i>Aktuelles CV ansehen
+                  </a>
+                </div>
+
+                <!-- Passwort ändern -->
                 <div class="card p-4">
                   <h5 class="fw-bold mb-3">Passwort ändern</h5>
-                  <div class="row g-3">
-                    <div class="col-12">
-                      <label class="form-label small">Aktuelles Passwort</label>
-                      <input type="password" class="form-control">
+                  <div id="password-alert" class="alert d-none" role="alert"></div>
+                  <form id="password-form">
+                    <div class="row g-3">
+                      <div class="col-12">
+                        <label class="form-label small">Aktuelles Passwort</label>
+                        <input type="password" class="form-control" id="current-password">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label small">Neues Passwort</label>
+                        <input type="password" class="form-control" id="new-password" minlength="8">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label small">Neues Passwort wiederholen</label>
+                        <input type="password" class="form-control" id="new-password-repeat" minlength="8">
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-outline-primary rounded-pill px-4">Passwort ändern</button>
+                      </div>
                     </div>
-                    <div class="col-md-6">
-                      <label class="form-label small">Neues Passwort</label>
-                      <input type="password" class="form-control">
-                    </div>
-                    <div class="col-md-6">
-                      <label class="form-label small">Neues Passwort wiederholen</label>
-                      <input type="password" class="form-control">
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-outline-primary rounded-pill px-4">Passwort ändern</button>
-                    </div>
-                  </div>
+                  </form>
                 </div>
               </div>
 
@@ -446,5 +388,10 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
   <script src="assets/js/theme.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/auth-nav.js"></script>
+  <script src="assets/js/mein-konto.js"></script>
 </body>
 </html>

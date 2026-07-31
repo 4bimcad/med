@@ -227,8 +227,11 @@
     const certificateNumber = 'FM-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000);
     const verificationUrl = VERIFICATION_BASE_URL + '?nr=' + encodeURIComponent(certificateNumber);
 
-    // QR-Code als Data-URL erzeugen
-    const qrDataUrl = await QRCode.toDataURL(verificationUrl, { width: 200, margin: 1 });
+    // QR-Code als Data-URL erzeugen (lokale Bibliothek, kein externes CDN)
+    const qr = qrcode(0, 'M');
+    qr.addData(verificationUrl);
+    qr.make();
+    const qrDataUrl = qr.createDataURL(6, 4);
 
     // PDF erzeugen
     const { jsPDF } = window.jspdf;

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="de-DE" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Mein Konto | FortbildungMed.de</title>
+  <meta name="description" content="Ihr persönlicher Bereich bei FortbildungMed.de – Kurse, Zertifikate und Kontoeinstellungen." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+  <link rel="manifest" href="assets/img/favicons/manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <link href="assets/css/theme.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <style>
+    .account-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+    .account-nav .nav-link {
+      color: #495057;
+      border-radius: 0.5rem;
+      padding: 0.65rem 1rem;
+      font-weight: 500;
+    }
+    .account-nav .nav-link:hover,
+    .account-nav .nav-link.active {
+      background: #f3e8ff;
+      color: #7c3aed;
+    }
+    .account-nav .nav-link i {
+      width: 1.4rem;
+    }
+    .course-progress {
+      height: 6px;
+      border-radius: 3px;
+      background: #e9ecef;
+    }
+    .course-progress-bar {
+      height: 100%;
+      border-radius: 3px;
+      background: #9C69E2;
+    }
+    .course-card-account {
+      border: 1px solid #e9ecef;
+      border-radius: 0.75rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .course-card-account:hover {
+      border-color: #9C69E2;
+      box-shadow: 0 6px 18px rgba(156, 105, 226, 0.12);
+    }
+    .status-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2rem;
+    }
+    .status-open {
+      background: #f3e8ff;
+      color: #7c3aed;
+    }
+    .status-done {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .avatar-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #f3e8ff;
+      color: #7c3aed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    @media (max-width: 991.98px) {
+      .account-sidebar {
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="main" id="top">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img class="img-fluid" src="assets/img/icons/logo.png" alt="FortbildungMed.de Logo" />
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Navigation umschalten">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto ms-lg-4 ms-xl-7 border-bottom border-lg-bottom-0 pt-2 pt-lg-0">
+            <li class="nav-item"><a class="nav-link fw-medium" href="index.html">Start</a></li>
+            <li class="nav-item"><a class="nav-link fw-medium" href="fachbereiche.html">Fachbereiche</a></li>
+            <li class="nav-item"><a class="nav-link fw-medium" href="zertifikat.html">Zertifikat</a></li>
+            <li class="nav-item"><a class="nav-link fw-medium" href="kontakt.html">Kontakt</a></li>
+          </ul>
+          <form class="d-flex py-3 py-lg-0">
+            <a class="btn btn-light rounded-pill shadow fw-bold" href="mein-konto.html" role="button">
+              Mein Konto
+            </a>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <section class="pt-8 pb-5">
+      <div class="container pt-5 pt-md-6">
+
+        <div class="row g-4">
+
+          <!-- Sidebar -->
+          <div class="col-lg-3">
+            <div class="account-sidebar card p-3 shadow-sm">
+              <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="avatar-circle">AK</div>
+                <div>
+                  <div class="fw-bold">Anna Kaufmann</div>
+                  <div class="small text-600">anna.kaufmann@email.de</div>
+                </div>
+              </div>
+
+              <nav class="account-nav nav flex-column gap-1">
+                <a class="nav-link active" href="#meine-kurse" data-bs-toggle="tab">
+                  <i class="bi bi-journal-bookmark me-2"></i>Meine Kurse
+                </a>
+                <a class="nav-link" href="#zertifikate" data-bs-toggle="tab">
+                  <i class="bi bi-award me-2"></i>Zertifikate
+                </a>
+                <a class="nav-link" href="#rechnungen" data-bs-toggle="tab">
+                  <i class="bi bi-receipt me-2"></i>Rechnungen
+                </a>
+                <a class="nav-link" href="#einstellungen" data-bs-toggle="tab">
+                  <i class="bi bi-gear me-2"></i>Einstellungen
+                </a>
+                <hr class="my-2">
+                <a class="nav-link text-danger" href="index.html">
+                  <i class="bi bi-box-arrow-right me-2"></i>Abmelden
+                </a>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Main area -->
+          <div class="col-lg-9">
+            <div class="tab-content">
+
+              <!-- Meine Kurse -->
+              <div class="tab-pane fade show active" id="meine-kurse">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <div>
+                    <h2 class="fw-bold mb-1">Meine Kurse</h2>
+                    <p class="text-600 mb-0 small">Hier finden Sie alle Ihre gebuchten Kurse</p>
+                  </div>
+                  <a href="fachbereiche.html" class="btn btn-sm btn-outline-primary rounded-pill">
+                    + Weitere Kurse
+                  </a>
+                </div>
+
+                <!-- Course 1 -->
+                <div class="course-card-account p-3 p-md-4 mb-3">
+                  <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                      <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;background:#f3e8ff;">
+                        <i class="bi bi-brain" style="font-size:1.5rem;color:#9C69E2;"></i>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                        <h5 class="fw-bold mb-0 fs-6">Umgang mit Demenz</h5>
+                        <span class="status-badge status-open">In Bearbeitung</span>
+                      </div>
+                      <div class="small text-600 mb-2">5 Module · 10 UE · Gekauft am 12.07.2026</div>
+                      <div class="course-progress mb-1" style="max-width:220px;">
+                        <div class="course-progress-bar" style="width:40%;"></div>
+                      </div>
+                      <div class="small text-600">2 von 5 Modulen abgeschlossen</div>
+                    </div>
+                    <div class="col-auto">
+                      <a href="#" class="btn btn-sm btn-primary rounded-pill px-3">Weiterlernen</a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card-account p-3 p-md-4 mb-3">
+                  <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                      <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;background:#f3e8ff;">
+                        <i class="bi bi-shield-check" style="font-size:1.5rem;color:#9C69E2;"></i>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                        <h5 class="fw-bold mb-0 fs-6">Hygiene in der Pflege</h5>
+                        <span class="status-badge status-done">Abgeschlossen</span>
+                      </div>
+                      <div class="small text-600 mb-2">4 Module · 6 UE · Gekauft am 03.06.2026</div>
+                      <div class="course-progress mb-1" style="max-width:220px;">
+                        <div class="course-progress-bar" style="width:100%;"></div>
+                      </div>
+                      <div class="small text-600">Kurs abgeschlossen</div>
+                    </div>
+                    <div class="col-auto d-flex gap-2">
+                      <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Ansehen</a>
+                      <a href="#" class="btn btn-sm btn-success rounded-pill px-3">
+                        <i class="bi bi-download me-1"></i>Zertifikat
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Empty state (если нет курсов) — раскомментируй при необходимости
+                <div class="text-center py-5">
+                  <i class="bi bi-journal-x display-4 text-300"></i>
+                  <p class="mt-3 text-600">Sie haben noch keine Kurse gebucht.</p>
+                  <a href="fachbereiche.html" class="btn btn-primary rounded-pill">Kurse entdecken</a>
+                </div>
+                -->
+              </div>
+
+              <!-- Zertifikate -->
+              <div class="tab-pane fade" id="zertifikate">
+                <h2 class="fw-bold mb-1">Meine Zertifikate</h2>
+                <p class="text-600 mb-4 small">Alle Ihre Teilnahmebescheinigungen zum Download</p>
+
+                <div class="course-card-account p-3 p-md-4 mb-3">
+                  <div class="row align-items-center g-3">
+                    <div class="col-auto">
+                      <i class="bi bi-award" style="font-size:2rem;color:#9C69E2;"></i>
+                    </div>
+                    <div class="col">
+                      <h5 class="fw-bold mb-1 fs-6">Hygiene in der Pflege</h5>
+                      <div class="small text-600">Ausgestellt am 18.06.2026 · 6 UE · QR-Code zur Verifizierung</div>
+                    </div>
+                    <div class="col-auto">
+                      <a href="#" class="btn btn-sm btn-primary rounded-pill px-3">
+                        <i class="bi bi-download me-1"></i>PDF herunterladen
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="small text-600 mt-3">
+                  <i class="bi bi-info-circle me-1"></i>
+                  Zertifikate können auf der Seite <a href="zertifikat.html">Zertifikat prüfen</a> verifiziert werden.
+                </p>
+              </div>
+
+              <!-- Rechnungen -->
+              <div class="tab-pane fade" id="rechnungen">
+                <h2 class="fw-bold mb-1">Rechnungen</h2>
+                <p class="text-600 mb-4 small">Ihre Kaufbelege und Rechnungen</p>
+
+                <div class="table-responsive">
+                  <table class="table align-middle">
+                    <thead>
+                      <tr class="small text-600">
+                        <th>Datum</th>
+                        <th>Beschreibung</th>
+                        <th>Betrag</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="small">12.07.2026</td>
+                        <td>Umgang mit Demenz</td>
+                        <td class="fw-bold">69 €</td>
+                        <td class="text-end">
+                          <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">PDF</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="small">03.06.2026</td>
+                        <td>Hygiene in der Pflege</td>
+                        <td class="fw-bold">49 €</td>
+                        <td class="text-end">
+                          <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill">PDF</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Einstellungen -->
+              <div class="tab-pane fade" id="einstellungen">
+                <h2 class="fw-bold mb-1">Einstellungen</h2>
+                <p class="text-600 mb-4 small">Persönliche Daten und Passwort</p>
+
+                <div class="card p-4 mb-4">
+                  <h5 class="fw-bold mb-3">Persönliche Daten</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label small">Vorname</label>
+                      <input type="text" class="form-control" value="Anna">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small">Nachname</label>
+                      <input type="text" class="form-control" value="Kaufmann">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label small">E-Mail</label>
+                      <input type="email" class="form-control" value="anna.kaufmann@email.de">
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-primary rounded-pill px-4">Speichern</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card p-4">
+                  <h5 class="fw-bold mb-3">Passwort ändern</h5>
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label small">Aktuelles Passwort</label>
+                      <input type="password" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small">Neues Passwort</label>
+                      <input type="password" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small">Neues Passwort wiederholen</label>
+                      <input type="password" class="form-control">
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-outline-primary rounded-pill px-4">Passwort ändern</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================-->
+    <!-- CTA + FOOTER-->
+    <!-- ============================================-->
+    <section class="py-5 pb-0">
+
+      <div class="container">
+        <hr class="text-info opacity-25" />
+        <div class="row justify-content-lg-around">
+          <div class="col-6 col-sm-12 col-lg-3 mb-3 order-0 order-sm-0">
+            <a class="text-decoration-none" href="index.html">
+              <img class="img-fluid me-3" src="assets/img/icons/logo.png" alt="FortbildungMed.de Logo" />
+              <span class="fw-bold fs-1 text-1000">FortbildungMed</span>
+            </a>
+            <p class="mt-4">FortbildungMed OÜ<br />Tallinn, Estland</p>
+          </div>
+
+          <div class="col-6 col-sm-4 col-lg-3 mb-3 order-1 order-sm-1">
+            <h6 class="lh-lg fw-bold">Über uns</h6>
+            <ul class="list-unstyled mb-md-4 mb-lg-0">
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="ueber-uns.html">Über FortbildungMed</a></li>
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="fachbereiche.html">Fachbereiche</a></li>
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="neuigkeiten.html">Neuigkeiten</a></li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-sm-4 col-lg-3 mb-3 order-2 order-sm-2">
+            <h6 class="lh-lg fw-bold">Konto</h6>
+            <ul class="list-unstyled mb-md-4 mb-lg-0">
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="registrieren.html">Registrieren</a></li>
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="login.html">Anmelden</a></li>
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="passwort-vergessen.html">Passwort vergessen</a></li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-sm-4 col-lg-3 mb-3 order-3 order-sm-3">
+            <h6 class="lh-lg fw-bold">Hilfe</h6>
+            <ul class="list-unstyled mb-md-4 mb-lg-0">
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="faq.html">Häufige Fragen</a></li>
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="zertifikat.html">Zertifikat prüfen</a></li>
+              <li class="lh-lg"><a class="text-dark fs--1 text-decoration-none" href="kontakt.html">Kontakt</a></li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      <!-- end of .container-->
+
+    </section>
+    <!-- ============================================-->
+
+
+
+
+    <!-- ============================================-->
+    <!-- SUB-FOOTER-->
+    <!-- ============================================-->
+    <section class="py-2">
+
+      <div class="container">
+        <div class="row flex-center px-3">
+          <div class="col-12 col-md-6 px-md-0 order-1 order-md-0">
+            <div class="fs--1 text-center text-md-start">
+              <p class="mb-0">Diese Vorlage wurde erstellt mit &nbsp;
+                <svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                  fill="#9C69E2" viewBox="0 0 16 16">
+                  <path
+                    d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z">
+                  </path>
+                </svg>&nbsp;von&nbsp;<a class="text-1000" href="https://themewagon.com/" target="_blank">ThemeWagon </a>
+              </p>
+              <p class="mb-0">© 2026 FortbildungMed OÜ, Tallinn, Estland. Alle Rechte vorbehalten. </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 text-center text-md-end mb-3 mb-md-0"> <a href="kontakt.html"><img
+                class="img-fluid" src="assets/img/icons/pre-footer.png" height="14" alt="Kontakt aufnehmen" /></a></div>
+        </div>
+      </div>
+      <!-- end of .container-->
+
+    </section>
+
+
+  </main>
+
+  <script src="vendors/@popperjs/popper.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="vendors/is/is.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="assets/js/theme.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
+</body>
+</html>

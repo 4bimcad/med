@@ -159,9 +159,8 @@
             <li class="nav-item"><a class="nav-link fw-medium" href="zertifikat.html">Zertifikat</a></li>
             <li class="nav-item"><a class="nav-link fw-medium" href="kontakt.html">Kontakt</a></li>
           </ul>
-          <form class="d-flex py-3 py-lg-0">
-            <a class="btn btn-light rounded-pill shadow fw-bold" href="registrieren.html" role="button">
-              Jetzt registrieren
+          <form class="d-flex py-3 py-lg-0" id="navbar-auth-form">
+            <a class="btn btn-light rounded-pill shadow fw-bold" href="registrieren.html" role="button" id="navbar-auth-btn">Jetzt registrieren
               <svg class="bi bi-arrow-right" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#9C69E2"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -624,6 +623,9 @@
   <script src="vendors/is/is.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
   <script src="assets/js/theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/auth-nav.js"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap"
     rel="stylesheet">

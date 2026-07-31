@@ -45,7 +45,10 @@
               <div class="card p-4 p-md-5">
                 <h1 class="fw-bold mb-2 text-center">Jetzt registrieren</h1>
                 <p class="text-center mb-4">Erstellen Sie Ihr kostenloses Konto und starten Sie mit Ihrer ersten Fortbildung.</p>
-                <form>
+
+                <div id="reg-alert" class="alert d-none" role="alert"></div>
+
+                <form id="reg-form" novalidate>
                   <div class="mb-3">
                     <label class="form-label fs--1" for="reg-name">Vor- und Nachname</label>
                     <input type="text" class="form-control" id="reg-name" placeholder="Max Mustermann" />
@@ -73,7 +76,7 @@
                     <input class="form-check-input" type="checkbox" id="reg-agb" />
                     <label class="form-check-label fs--1" for="reg-agb">Ich akzeptiere die Datenschutzerklärung und die Nutzungsbedingungen.</label>
                   </div>
-                  <button type="submit" class="btn btn-info rounded-pill w-100">Konto erstellen</button>
+                  <button type="submit" class="btn btn-info rounded-pill w-100" id="reg-submit-btn">Konto erstellen</button>
                 </form>
               </div>
               <p class="text-center mt-3 fs--1">Sie haben bereits ein Konto? <a href="login.html">Jetzt anmelden</a></p>
@@ -172,5 +175,9 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="assets/js/theme.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/auth-register.js"></script>
   </body>
 </html>

@@ -34,6 +34,10 @@
               <li class="nav-item"><a class="nav-link fw-medium" href="zertifikat.html">Zertifikat</a></li>
               <li class="nav-item"><a class="nav-link fw-medium" href="kontakt.html">Kontakt</a></li>
             </ul>
+            <form class="d-flex py-3 py-lg-0"><a class="btn btn-light rounded-pill shadow fw-bold active" aria-current="page" href="registrieren.html" role="button">Jetzt registrieren
+                <svg class="bi bi-arrow-right" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#9C69E2" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                </svg></a></form>
           </div>
         </div>
       </nav>
@@ -45,12 +49,14 @@
               <div class="card p-4 p-md-5">
                 <h1 class="fw-bold mb-2 text-center">Passwort vergessen</h1>
                 <p class="text-center mb-4">Geben Sie Ihre E-Mail-Adresse ein. Wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.</p>
-                <form>
+                <div id="forgot-alert" class="alert d-none" role="alert"></div>
+
+                <form id="forgot-form" novalidate>
                   <div class="mb-4">
                     <label class="form-label fs--1" for="reset-email">E-Mail</label>
                     <input type="email" class="form-control" id="reset-email" placeholder="ihre.email@beispiel.de" />
                   </div>
-                  <button type="submit" class="btn btn-info rounded-pill w-100">Link zum Zurücksetzen senden</button>
+                  <button type="submit" class="btn btn-info rounded-pill w-100" id="forgot-submit-btn">Link zum Zurücksetzen senden</button>
                 </form>
               </div>
               <p class="text-center mt-3 fs--1">Doch wieder eingefallen? <a href="login.html">Zurück zur Anmeldung</a></p>
@@ -59,7 +65,7 @@
         </div>
       </section>
 
-    <!-- ============================================-->
+   <!-- ============================================-->
     <!-- CTA + FOOTER-->
     <!-- ============================================-->
     <section class="py-5 pb-0">
@@ -139,6 +145,7 @@
       <!-- end of .container-->
 
     </section>
+    <!-- ============================================-->
 
 
     </main>
@@ -149,5 +156,9 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="assets/js/theme.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/auth-forgot.js"></script>
   </body>
 </html>

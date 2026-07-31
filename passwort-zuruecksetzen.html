@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Zertifikat & Verifizierung | FortbildungMed.de</title>
-    <meta name="description" content="Ihr FortbildungMed.de-Teilnahmezertifikat als PDF – jederzeit per QR-Code verifizierbar, rund um die Uhr abrufbar, verarbeitet nach DSGVO, ISO 27001 und ISO 9001." />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.fortbildungmed.de/zertifikat.html" />
+    <title>Neues Passwort festlegen | FortbildungMed.de</title>
+    <meta name="description" content="Legen Sie ein neues Passwort für Ihr FortbildungMed.de-Konto fest." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://www.fortbildungmed.de/passwort-zuruecksetzen.html" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
@@ -31,76 +31,37 @@
             <ul class="navbar-nav me-auto ms-lg-4 ms-xl-7 border-bottom border-lg-bottom-0 pt-2 pt-lg-0">
               <li class="nav-item"><a class="nav-link fw-medium" href="index.html">Start</a></li>
               <li class="nav-item"><a class="nav-link fw-medium" href="fachbereiche.html">Fachbereiche</a></li>
-              <li class="nav-item"><a class="nav-link fw-bold active" aria-current="page" href="zertifikat.html">Zertifikat</a></li>
+              <li class="nav-item"><a class="nav-link fw-medium" href="zertifikat.html">Zertifikat</a></li>
               <li class="nav-item"><a class="nav-link fw-medium" href="kontakt.html">Kontakt</a></li>
             </ul>
-            <form class="d-flex py-3 py-lg-0" id="navbar-auth-form">
-              <a class="btn btn-light rounded-pill shadow fw-bold" href="registrieren.html" role="button" id="navbar-auth-btn">Jetzt registrieren
-                <svg class="bi bi-arrow-right" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#9C69E2"
-                  viewBox="0 0 16 16">
-                  <path fill-rule="evenodd"
-                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
-                  </path>
-                </svg>
-              </a>
-            </form>
           </div>
         </div>
       </nav>
 
       <section class="py-5">
-        <div class="container">
-          <div class="row align-items-center pt-8 pt-md-9">
-            <div class="col-md-7">
-              <h1 class="mb-4 display-4 fw-bold">Zertifikat zum Ausdrucken</h1>
-              <p class="mb-3">Nach erfolgreichem Abschluss einer Fortbildung erhalten Sie automatisch ein Teilnahmezertifikat im PDF-Format – ideal für Ihre Personalakte.</p>
-              <p class="mb-3">Jedes Zertifikat trägt einen <strong>QR-Code</strong>, über den Arbeitgeber, Behörden oder Kolleg:innen die Echtheit jederzeit online prüfen können. Der Download ist rund um die Uhr (24/7) direkt von unserem Server möglich.</p>
-              <p class="mb-0">Auf der Verifizierungsseite jedes Zertifikats finden Interessierte zusätzlich einen Link zum Lebenslauf (CV) sowie zum LinkedIn-Profil der jeweiligen Teilnehmerin bzw. des Teilnehmers.</p>
-            </div>
-            <div class="col-md-5 text-center mt-4 mt-md-0">
-              <i class="bi bi-patch-check" style="font-size:8rem;color:#9C69E2;"></i>
-            </div>
-          </div>
-        </div>
-      </section>
+        <div class="container pt-8 pt-md-9">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <div class="card p-4 p-md-5">
+                <h1 class="fw-bold mb-2 text-center">Neues Passwort festlegen</h1>
+                <p class="text-center mb-4">Bitte geben Sie Ihr neues Passwort ein.</p>
 
-      <section class="py-5">
-        <div class="container">
-          <div class="row gy-4">
-            <div class="col-md-4">
-              <div class="card h-100 p-4 text-center">
-                <i class="bi bi-file-earmark-pdf mb-3" style="font-size:2.25rem;color:#9C69E2;"></i>
-                <h5 class="fw-bold">PDF-Zertifikat</h5>
-                <p class="fs--1 mb-0">Automatisch nach Kursabschluss, druckfertig für Ihre Personalakte.</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card h-100 p-4 text-center">
-                <i class="bi bi-qr-code mb-3" style="font-size:2.25rem;color:#9C69E2;"></i>
-                <h5 class="fw-bold">QR-Verifizierung</h5>
-                <p class="fs--1 mb-0">Jedes Zertifikat lässt sich per QR-Code online auf Echtheit prüfen.</p>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card h-100 p-4 text-center">
-                <i class="bi bi-clock-history mb-3" style="font-size:2.25rem;color:#9C69E2;"></i>
-                <h5 class="fw-bold">24/7 verfügbar</h5>
-                <p class="fs--1 mb-0">Download und Verifizierung sind jederzeit vom Server abrufbar.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                <div id="reset-alert" class="alert d-none" role="alert"></div>
 
-      <section class="py-5">
-        <div class="container">
-          <div class="card bg-soft-danger rounded-3 p-4 p-md-5 text-center">
-            <h2 class="fw-bold mb-3">Zertifikat prüfen</h2>
-            <p class="mb-4">Geben Sie die Zertifikatsnummer ein oder scannen Sie den QR-Code, um die Gültigkeit zu überprüfen. Unter der Verifizierung finden Sie zusätzlich den CV sowie das LinkedIn-Profil der jeweiligen Person.</p>
-            <form class="row justify-content-center g-2">
-              <div class="col-auto"><input type="text" class="form-control" placeholder="Zertifikatsnummer" aria-label="Zertifikatsnummer" /></div>
-              <div class="col-auto"><button class="btn btn-info rounded-pill" type="submit">Prüfen</button></div>
-            </form>
+                <form id="reset-form">
+                  <div class="mb-3">
+                    <label class="form-label fs--1" for="reset-passwort">Neues Passwort</label>
+                    <input type="password" class="form-control" id="reset-passwort" placeholder="Mindestens 8 Zeichen" minlength="8" required />
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label fs--1" for="reset-passwort-wiederholen">Passwort wiederholen</label>
+                    <input type="password" class="form-control" id="reset-passwort-wiederholen" placeholder="Passwort erneut eingeben" minlength="8" required />
+                  </div>
+                  <button type="submit" class="btn btn-info rounded-pill w-100" id="reset-submit-btn">Neues Passwort speichern</button>
+                </form>
+              </div>
+              <p class="text-center mt-3 fs--1">Zurück zur <a href="login.html">Anmeldung</a></p>
+            </div>
           </div>
         </div>
       </section>
@@ -148,7 +109,7 @@
             </ul>
           </div>
         </div>
-        
+
       </div>
       <!-- end of .container-->
 
@@ -194,9 +155,10 @@
     <script src="vendors/is/is.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="assets/js/theme.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&amp;display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <script src="assets/js/supabase-client.js"></script>
-    <script src="assets/js/auth-nav.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <script src="assets/js/auth-reset.js"></script>
   </body>
 </html>

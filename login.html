@@ -45,7 +45,10 @@
               <div class="card p-4 p-md-5">
                 <h1 class="fw-bold mb-2 text-center">Anmelden</h1>
                 <p class="text-center mb-4">Melden Sie sich an, um auf Ihre Fortbildungen und Zertifikate zuzugreifen.</p>
-                <form>
+
+                <div id="login-alert" class="alert d-none" role="alert"></div>
+
+                <form id="login-form" novalidate>
                   <div class="mb-3">
                     <label class="form-label fs--1" for="login-email">E-Mail</label>
                     <input type="email" class="form-control" id="login-email" placeholder="ihre.email@beispiel.de" />
@@ -61,7 +64,7 @@
                     </div>
                     <a class="fs--1" href="passwort-vergessen.html">Passwort vergessen?</a>
                   </div>
-                  <button type="submit" class="btn btn-info rounded-pill w-100">Anmelden</button>
+                  <button type="submit" class="btn btn-info rounded-pill w-100" id="login-submit-btn">Anmelden</button>
                   
                 </form>
               </div>
@@ -162,5 +165,9 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="assets/js/theme.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/auth-login.js"></script>
   </body>
 </html>

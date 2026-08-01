@@ -81,6 +81,28 @@ document.addEventListener('DOMContentLoaded', function () {
       if (profileError) {
         console.error('Profil konnte nicht gespeichert werden:', profileError);
       }
+
+      // Automatische Einschreibung in den kostenlosen Kurs
+      const { data: freeCourse } = await supabaseClient
+        .from('courses')
+        .select('id')
+        .eq('price', 0)
+        .limit(1)
+        .maybeSingle();
+
+      if (freeCourse) {
+        const { error: freeEnrollError } = await supabaseClient
+          .from('enrollments')
+          .insert({
+            user_id: user.id,
+            course_id: freeCourse.id,
+            price_paid: 0
+          });
+
+        if (freeEnrollError) {
+          console.error('Kostenloser Kurs konnte nicht automatisch hinzugefügt werden:', freeEnrollError);
+        }
+      }
     }
 
     showAlert('Konto erfolgreich erstellt! Sie werden weitergeleitet …', 'success');

@@ -101,7 +101,7 @@
   async function loadCourses() {
     const { data, error } = await supabaseClient
       .from('enrollments')
-      .select('id, purchased_at, price_paid, invoice_pdf_path, courses(id, title, hours, slug)')
+      .select('id, purchased_at, price_paid, invoice_pdf_path, courses(id, title, hours, slug, course_pdf_url)')
       .eq('user_id', user.id)
       .order('purchased_at', { ascending: false });
 
@@ -142,6 +142,11 @@
 
       const card = document.createElement('div');
       card.className = 'course-card-account p-3 p-md-4 mb-3';
+
+      const downloadBtn = course.course_pdf_url
+        ? '<a href="' + course.course_pdf_url + '" target="_blank" class="btn btn-sm btn-primary rounded-pill px-3"><i class="bi bi-download me-1"></i>Kurs herunterladen</a>'
+        : '<span class="badge bg-light text-600 border">PDF wird vorbereitet</span>';
+
       card.innerHTML =
         '<div class="row align-items-center g-3">' +
           '<div class="col-auto">' +
@@ -155,6 +160,7 @@
             '</div>' +
             '<div class="small text-600">' + course.hours + ' UE · Gekauft am ' + formatDate(e.purchased_at) + '</div>' +
           '</div>' +
+          '<div class="col-auto">' + downloadBtn + '</div>' +
         '</div>';
       coursesContainer.appendChild(card);
     });

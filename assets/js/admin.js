@@ -280,6 +280,24 @@
     enrollAlert.classList.remove('d-none');
   }
 
+  // ---- Bild-URL in Data-URL umwandeln (nötig für doc.addImage) ----
+  function loadImageAsDataURL(url) {
+    return new Promise(function (resolve, reject) {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/png'));
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
   // ---- Zertifikat generieren: PDF + QR-Code + Upload + DB-Eintrag ----
   async function generateCertificate(course) {
     const hoursInput = prompt('Unterrichtseinheiten (UE) für dieses Zertifikat:', course.hours);
@@ -295,42 +313,70 @@
     qr.make();
     const qrDataUrl = qr.createDataURL(6, 4);
 
+    // Logo laden (Fehler hier dürfen die Zertifikatserstellung nicht blockieren)
+    let logoDataUrl = null;
+    try {
+      logoDataUrl = await loadImageAsDataURL('assets/img/icons/logo.png');
+    } catch (e) {
+      console.error('Logo konnte nicht geladen werden:', e);
+    }
+
     // PDF erzeugen
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    const pageWidth = 297;
 
+    // Dünne Kopfleiste
     doc.setFillColor(156, 105, 226);
-    doc.rect(0, 0, 297, 12, 'F');
+    doc.rect(0, 0, pageWidth, 4, 'F');
+
+    // Logo oben links (Originalverhältnis 300:79 beibehalten)
+    if (logoDataUrl) {
+      const logoWidth = 42;
+      const logoHeight = logoWidth * (79 / 300);
+      doc.addImage(logoDataUrl, 'PNG', 15, 14, logoWidth, logoHeight);
+    }
 
     doc.setFontSize(26);
     doc.setTextColor(40, 40, 40);
-    doc.text('Teilnahmebescheinigung', 148.5, 45, { align: 'center' });
+    doc.text('Teilnahmebescheinigung', pageWidth / 2, 48, { align: 'center' });
 
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setTextColor(100, 100, 100);
-    doc.text('FortbildungMed.de bescheinigt hiermit,', 148.5, 60, { align: 'center' });
+    doc.text('Verliehen an', pageWidth / 2, 62, { align: 'center' });
 
-    doc.setFontSize(22);
+    doc.setFontSize(24);
     doc.setTextColor(20, 20, 20);
-    doc.text(selectedUser.full_name || 'Teilnehmer/in', 148.5, 75, { align: 'center' });
+    doc.text(selectedUser.full_name || 'Teilnehmer/in', pageWidth / 2, 76, { align: 'center' });
 
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setTextColor(100, 100, 100);
-    doc.text('hat erfolgreich an der Fortbildung teilgenommen:', 148.5, 88, { align: 'center' });
+    doc.text('für die erfolgreiche Teilnahme am Kurs', pageWidth / 2, 89, { align: 'center' });
 
-    doc.setFontSize(18);
+    doc.setFontSize(19);
     doc.setTextColor(124, 58, 237);
-    doc.text(course.title, 148.5, 100, { align: 'center' });
+    doc.text(course.title, pageWidth / 2, 100, { align: 'center' });
+
+    doc.setFontSize(10.5);
+    doc.setTextColor(90, 90, 90);
+    const paragraph = doc.splitTextToSize(
+      'Diese Bescheinigung würdigt das Engagement der teilnehmenden Person bei der Bearbeitung der ' +
+      'Kursinhalte und dokumentiert die Teilnahme an dieser Fortbildung im Rahmen der beruflichen Weiterentwicklung.',
+      170
+    );
+    doc.text(paragraph, pageWidth / 2, 112, { align: 'center' });
 
     doc.setFontSize(12);
-    doc.setTextColor(80, 80, 80);
-    doc.text(hours + ' Unterrichtseinheiten (UE)', 148.5, 110, { align: 'center' });
-    doc.text('Ausgestellt am: ' + new Date().toLocaleDateString('de-DE'), 148.5, 118, { align: 'center' });
-    doc.text('Zertifikatsnummer: ' + certificateNumber, 148.5, 125, { align: 'center' });
+    doc.setTextColor(60, 60, 60);
+    doc.text('Kursdauer: ' + hours + ' Unterrichtseinheiten (UE)', pageWidth / 2, 132, { align: 'center' });
+    doc.text('Ausgestellt am: ' + new Date().toLocaleDateString('de-DE'), pageWidth / 2, 140, { align: 'center' });
 
-    doc.addImage(qrDataUrl, 'PNG', 250, 150, 30, 30);
+    // QR-Code + Zertifikatsnummer unten rechts
+    doc.addImage(qrDataUrl, 'PNG', 250, 155, 30, 30);
     doc.setFontSize(8);
-    doc.text('Verifizierung', 265, 183, { align: 'center' });
+    doc.setTextColor(120, 120, 120);
+    doc.text('Verifizierung', 265, 188, { align: 'center' });
+    doc.text(certificateNumber, 265, 192, { align: 'center' });
 
     const pdfBlob = doc.output('blob');
 

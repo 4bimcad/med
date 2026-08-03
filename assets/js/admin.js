@@ -4,7 +4,7 @@
 (async function () {
   if (typeof supabaseClient === 'undefined') return;
 
-  const VERIFICATION_BASE_URL = 'https://4bimcad.github.io/med/zertifikat.html';
+  const VERIFICATION_BASE_URL = 'https://fortbildungmed.de/zertifikat.html';
 
   // ---- Auth Guard + Admin-Check ----
   const { data: { session } } = await supabaseClient.auth.getSession();

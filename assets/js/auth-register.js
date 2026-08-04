@@ -1,4 +1,4 @@
-const VERIFICATION_BASE_URL = 'https://4bimcad.github.io/med/zertifikat.html';
+const VERIFICATION_BASE_URL = 'https://fortbildungmed.de/zertifikat.html';
 
 function loadImageAsDataURL(url) {
   return new Promise(function (resolve, reject) {

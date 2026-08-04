@@ -67,20 +67,23 @@
             <div class="col-md-7">
               <div class="card h-100 p-4">
                 <h5 class="fw-bold mb-3">Nachricht senden</h5>
-                <form>
+
+                <div id="kontakt-alert" class="alert d-none" role="alert"></div>
+
+                <form id="kontakt-form">
                   <div class="mb-3">
-                    <label class="form-label fs--1" for="kontakt-name">Name</label>
-                    <input type="text" class="form-control" id="kontakt-name" placeholder="Ihr Name" />
+                    <label class="form-label fs--1" for="kontakt-name">Name *</label>
+                    <input type="text" class="form-control" id="kontakt-name" placeholder="Ihr Name" required />
                   </div>
                   <div class="mb-3">
-                    <label class="form-label fs--1" for="kontakt-email">E-Mail</label>
-                    <input type="email" class="form-control" id="kontakt-email" placeholder="ihre.email@beispiel.de" />
+                    <label class="form-label fs--1" for="kontakt-email">E-Mail *</label>
+                    <input type="email" class="form-control" id="kontakt-email" placeholder="ihre.email@beispiel.de" required />
                   </div>
                   <div class="mb-3">
-                    <label class="form-label fs--1" for="kontakt-nachricht">Nachricht</label>
-                    <textarea class="form-control" id="kontakt-nachricht" rows="4" placeholder="Ihre Nachricht an uns"></textarea>
+                    <label class="form-label fs--1" for="kontakt-nachricht">Nachricht *</label>
+                    <textarea class="form-control" id="kontakt-nachricht" rows="4" placeholder="Ihre Nachricht an uns" required></textarea>
                   </div>
-                  <button type="submit" class="btn btn-info rounded-pill">Nachricht senden</button>
+                  <button type="submit" class="btn btn-info rounded-pill" id="kontakt-submit-btn">Nachricht senden</button>
                 </form>
               </div>
             </div>
@@ -181,5 +184,8 @@
     <script src="assets/js/supabase-client.js"></script>
     <script src="assets/js/auth-nav.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="assets/js/contact-form.js"></script>
   </body>
 </html>

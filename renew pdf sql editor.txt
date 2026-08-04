@@ -1,0 +1,7 @@
+selbstfuersorge-fuer-angehoerige
+
+https://ldszctchldwbrlwrmmxn.supabase.co/storage/v1/object/public/course-materials/selbstfuersorge-fuer-angehoerige.pdf
+
+
+update public.courses set course_pdf_url = 'https://ldszctchldwbrlwrmmxn.supabase.co/storage/v1/object/public/course-materials/selbstfuersorge-fuer-angehoerige.pdf'
+where slug = 'selbstfuersorge-fuer-angehoerige';
